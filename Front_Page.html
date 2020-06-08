@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap"
+      rel="stylesheet"
+      type="text/css">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,25 +9,46 @@
 </head>
 
 <style>
-    .red-text{
+    /* text color*/
+    .white-text{
+        font-family: Lora;
         color:whitesmoke;
     }
 
+    /* resizes images */
+    .smaller-image{
+        width: 200px;
+    }
+
+    /*creates black border*/
+    .black-border{
+        border-color: black;
+        border-width: 3px;
+        border-style: solid;
+    }
+    /* purple background */
     body {
         background-color: mediumpurple;
     }
-
+    /* h1 tags are white */
     h1 {
         color:whitesmoke;
     }
 
+    th{
+        border: black;
+        border-radius: 5px;
+        border-style: solid;
+    }
 
 </style>
 
 <main>
-<body>
-    <table style="size: auto">
-        <tr class="red-text">
+<!--https://www.xmple.com/wallpaper/gradient-linear-blue-purple-1920x1080-c2-00bfff-9400d3-a-90-f-14.svg  POSSIBLE ALTERNATIVE BACKGROUND-->
+<body style="background-image: url('https://www.xmple.com/wallpaper/gradient-blue-purple-linear-1920x1080-c2-9400d3-00bfff-a-105-f-14.svg');">
+    <h2 style="font-family: Lora">PussyPals.com</h2>
+    <table class="white-text black-border" style="size: auto">
+        <tr>
             <th>Home</th>
             <th>Discussion</th>
             <th>Match Maker</th>
@@ -35,7 +59,7 @@
 <div>
     <h1>Who We Are</h1>
     <h1>How We Started</h1>
-    <img src="https://cdn.mobsocmedia.com/uploads/sites/33/20170125195119/animaljamclans.jpg" alt="Two Lovers"</a>
+    <img class="smaller-image" src="https://cdn.mobsocmedia.com/uploads/sites/33/20170125195119/animaljamclans.jpg" alt="Two Lovers">
 </div>
 </body>
 </main>
