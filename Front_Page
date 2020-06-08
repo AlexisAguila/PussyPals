@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pussy Pals</title>
+</head>
+
+<style>
+    .red-text{
+        color:whitesmoke;
+    }
+
+    body {
+        background-color: mediumpurple;
+    }
+
+    h1 {
+        color:whitesmoke;
+    }
+
+
+</style>
+
+<main>
+<body>
+    <table style="size: auto">
+        <tr class="red-text">
+            <th>Home</th>
+            <th>Discussion</th>
+            <th>Match Maker</th>
+            <th>FAQ</th>
+            <th>About Us</th>
+        </tr>
+    </table>
+<div>
+    <h1>Who We Are</h1>
+    <h1>How We Started</h1>
+    <img src="https://cdn.mobsocmedia.com/uploads/sites/33/20170125195119/animaljamclans.jpg" alt="Two Lovers"</a>
+</div>
+</body>
+</main>
+</html>
