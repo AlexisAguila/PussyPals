@@ -9,11 +9,6 @@
 </head>
 
 <style>
-    /* text color*/
-    .white-text{
-        font-family: Lora;
-        color:white;
-    }
 
     /* resizes images */
     .smaller-image{
@@ -21,42 +16,45 @@
         border-radius: 20px;
     }
 
-    /*creates black border*/
-    .black-border{
-        border-color: black;
-        border-width: 3px;
-        border-style: solid;
-    }
     /*Centers tag*/
     .center-tag{
         text-align: center;
         align-content: center;
     }
 
+    /*changes the top menu to black*/
     .menu-color{
         background-color: black;
         overflow: hidden;
         font-family: Lora;
     }
 
+    /* styles menu bar, aligning items and font size */
     .menu-style{
         align-items: start;
         color: white;
         padding: 14px 16px;
         font-size: 17px;
     }
+
+    /* hovering menu bar causes color change*/
+    .menu-style a:hover{
+        background-color: white;
+        color: black;
+    }
+
+    /* default option is home, colors yellow and black text*/
+    .menu-style a.active{
+        background-color: gold;
+        color: black;
+    }
+
     /* h1 tags are white */
     h1 {
         color:white;
     }
 
-    th{
-        border: black;
-        border-radius: 5px;
-        border-style: solid;
-        padding: 3px;
-    }
-
+    /* sets background picture to html and body tag, with relative positioning*/
     html, body{
         background-image: url('https://wallpapercave.com/wp/wp2706049.jpg');
         height: 100%;
@@ -65,38 +63,37 @@
         background-size: cover;
     }
 
+
 </style>
 
 <main>
+
+    <!-- Menu bar -->
     <div class="menu-color menu-style">
-        <a class="menu-style">Home</a>
+        <a class="menu-style active">Home</a>
         <a class="menu-style">Discussion</a>
         <a class="menu-style">Match Maker</a>
         <a class="menu-style">FAQ</a>
         <a class="menu-style">About Us</a>
     </div>
 <body>
-<div>
 
-    <h2 class="center-tag" style="font-family: Lora">PussyPals.com</h2>
-<!--    <table class="white-text black-border" style="size: auto; padding:3px; margin-left: auto; margin-right: auto">-->
-<!--        <tr>-->
-<!--            <th>Home</th>-->
-<!--            <th>Discussion</th>-->
-<!--            <th>Match Maker</th>-->
-<!--            <th>FAQ</th>-->
-<!--            <th>About Us</th>-->
-<!--        </tr>-->
-<!--    </table>-->
+<div>
+    <!-- Title -->
+    <h2 class="center-tag" style="font-family: Broadway; color: oldlace; font-size: 40px">PussyPals.com</h2>
 </div>
 
 <div>
+    <!-- Paragraph one -->
     <h1>Who We Are</h1>
     <p style="color: white">We are Pussy Pals. The one and only website where your cat can swipe their paws right to finding their soul mate or even just another pal. Is your cat lonely? Is your cat moping around on cat nip all day? Then sign them up for Pussy Pals. Talk with other cat owners to talk for some cat scratching conversations. Meet other friendly felines. </p>
+    <!-- Paragraph two -->
     <h1>How We Started</h1>
     <p style="color: white">The idea for Pussy Pals started at the one and only Florida State University when four cat loving friends teamed up to create the next greatest cat loving website.</p>
-    <img class="smaller-image" src="https://cdn.mobsocmedia.com/uploads/sites/33/20170125195119/animaljamclans.jpg" alt="Two Lovers">
+    <!-- Picture of two cats, aligns the picture -->
+    <img class="smaller-image" src="https://cdn.mobsocmedia.com/uploads/sites/33/20170125195119/animaljamclans.jpg" alt="Two Lovers" style="display: block; margin-left: auto; margin-right: auto; position: relative; top: 80px">
 </div>
+
 </body>
 </main>
 </html>
