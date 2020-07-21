@@ -1,0 +1,39 @@
+<html>
+   <body>
+      <h1>Reviews for All</h1>
+      <table border = 1>
+         <thead>
+            <td>Name</td>
+            <td>Sleep</td>
+            <td>Purr</td>
+            <td>WetFood</td>
+            <td>DryFood</td>
+            <td>Butt</td>
+            <td>Face</td>
+            <td>Body</td>
+            <td>Humans</td>
+            <td>Catnip</td>
+            <td>Outside</td>
+         </thead>
+
+         {% for row in rows %}
+            <tr>
+               <td>{{row["Name"]}}</td>
+               <td>{{row["Sleep"]}}</td>
+               <td>{{row["Purr"]}}</td>
+               <td>{{row["WetFood"]}}</td>
+               <td>{{row["DryFood"]}}</td>
+               <td>{{row["Butt"]}}</td>
+               <td>{{row["Face"]}}</td>
+               <td>{{row["Body"]}}</td>
+               <td>{{row["Humans"]}}</td>
+               <td>{{row["Catnip"]}}</td>
+               <td>{{row["Outside"]}}</td>
+            </tr>
+         {% endfor %}
+      </table>
+
+      <a href = "/">Go back to home page</a>
+
+   </body>
+</html>
