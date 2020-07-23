@@ -2,6 +2,7 @@
 from flask import Flask, render_template, request
 import sqlite3 as sql
 import datetime
+import numpy as np
 app = Flask(__name__, template_folder='./')
 
 # Home page
@@ -14,7 +15,7 @@ def home():
 def about():
     return render_template('About_Page.html')
 
-# About_Page
+# Match_Maker gives them the option to create a profile or search
 @app.route('/Match_Maker')
 def match_maker():
     return render_template('Match_Maker.html')
@@ -23,6 +24,11 @@ def match_maker():
 @app.route('/createProf')
 def create_prof():
     return render_template('createProf.html')
+
+# Page to search for matches
+@app.route('/catSearch')
+def cat_search():
+    return render_template('catSearch.html')
 
 # What happens after someone clicks  sumbit on createProf.html
 @app.route('/addprof', methods = ['POST', 'GET'])
@@ -53,23 +59,29 @@ def addprof():
             con.close()
             return render_template("Match_Maker.html")
 
+
 # What happens after some prowls on Match_Maker.html
 @app.route('/showProfiles', methods = ['POST', 'GET'])
-def showprofiles():
-    #rs = request.form['Restaurant']
+def showProfiles():
+    nm = request.form['Name']
+    pn = request.form['Pin']
 
     con = sql.connect("catDaddy.db")
     con.row_factory = sql.Row
 
     cur = con.cursor()
 #    cur.execute("select * from Reviews where Restaurant=?", (rs,))
-    cur.execute("select * from Profiles")
+    cur.execute("select * from Profiles where Name=? AND Pin=?", (nm,pn))
 
-    rows = cur.fetchall();
+    cat = np.array(cur.fetchall())
+    if (len(cat)==0 ):
+        return render_template("Match_Maker.html")
+
+    cur.execute("select * from Profiles where Name!=?", (cat[0][0],))
+    rows = cur.fetchall()
+
 #    return render_template("showReviews.html", rows=rows, msg=rs)
-    return render_template("showProfiles.html", rows=rows)
-
-
+    return render_template("showProfiles.html", rows=rows, msg=cat[0][0])
 
 # int main()
 if __name__ == '__main__':
