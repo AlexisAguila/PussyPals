@@ -1,10 +1,74 @@
+<!DOCTYPE html>
+<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap"
+      rel="stylesheet"
+      type="text/css">
 
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Match</title>
+</head>
+
+<style>
+
+    html, body{
+        background-color: #395668;
+        height: 100%;
+        background-position: bottom;
+        background-size: cover;
+    }
+
+    .menu-style a:hover{
+        background-color: white;
+        color: black;
+    }
+
+    .menu-style a.active{
+        background-color: #ffd700;
+        color: black;
+    }
+
+    .menu-color{
+        background-color: black;
+        overflow: hidden;
+        font-family: Lora;
+    }
+
+    .menu-style{
+        align-items: start;
+        color: white;
+        padding: 14px 16px;
+        font-size: 17px;
+        text-decoration: none;
+    }
+
+    .rcorners{
+        border-radius: 20px;
+        background: #c78f27;
+        padding: 5px;
+        width: 200px;
+        height: 25px;
+        font-size: 20px;
+        text-align: center;
+        font-family: Lora;
+    }
+</style>
+
+<main>
+    <div class="menu-color menu-style">
+        <a class="menu-style" href="/">Home</a>
+        <a class="menu-style">Discussion</a>
+        <a class="menu-style active" href="/Match_Maker" >Match Maker</a>
+        <a class="menu-style">FAQ</a>
+        <a class="menu-style">About Us</a>
+    </div>
+
     <body>
-        <h1>Put yourself out there, or prowl for looooove?</h1>
-        <h2><a href="/createProf">Create a profile.</a></h2>
-        <h2><a href="/catSearch">Use your profile to find a match.</a></h2>
-        <a href = "/">Get me outta heeeea</a>
+    <h1>Put yourself out there, or prowl for looooove?</h1>
+    <h2><a href="/createProf">Create a profile.</a></h2>
+    <h2><a href="/catSearch">Use your profile to find a match.</a></h2>
+    <a href = "/">Get me outta heeeea</a>
     </body>
+</main>
 </html>
 
