@@ -1,8 +1,71 @@
-<html>
+<!DOCTYPE html>
+<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap"
+      rel="stylesheet"
+      type="text/css">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Match</title>
+</head>
+
+<style>
+
+    html, body{
+        background-color: #395668;
+        height: 100%;
+        background-position: bottom;
+        background-size: cover;
+    }
+
+    .menu-style a:hover{
+        background-color: white;
+        color: black;
+    }
+
+    .menu-style a.active{
+        background-color: #ffd700;
+        color: black;
+    }
+
+    .menu-color{
+        background-color: black;
+        overflow: hidden;
+        font-family: Lora;
+    }
+
+    .menu-style{
+        align-items: start;
+        color: white;
+        padding: 14px 16px;
+        font-size: 17px;
+        text-decoration: none;
+    }
+
+    .rcorners{
+        border-radius: 20px;
+        background: #c78f27;
+        padding: 5px;
+        width: 325px;
+        height: 25px;
+        font-size: 20px;
+        text-align: center;
+        font-family: Lora;
+    }
+</style>
+
+<main>
+    <div class="menu-color menu-style">
+        <a class="menu-style" href="/">Home</a>
+        <a class="menu-style">Discussion</a>
+        <a class="menu-style" href="/Match_Maker" >Match Maker</a>
+        <a class="menu-style">FAQ</a>
+        <a class="menu-style">About Us</a>
+    </div>
     <body>
-        <form action="{{ url_for('addprof') }}" method="POST">
-            <h1>Fill out this questionaire to find your meow a matey!</h1>
-            <h2>First the personal stuff</h2>
+        <form action="{{ url_for('addprof') }}" method="POST" style="color: white">
+            <h2 class="center-tag" style="font-family: Broadway; color: oldlace; font-size: 40px">Fill out this questionaire to find your meow a matey!</h2>
+            <h2 style="color: white">First the personal stuff</h2>
             Whatcha name?
             <input type="text" name="Name">
             <br>
@@ -45,4 +108,5 @@
         </form>
         <a href = "/Match_Maker">Go prowl for love ;)</a>
     </body>
+</main>
 </html>

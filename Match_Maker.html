@@ -18,6 +18,12 @@
         background-size: cover;
     }
 
+    /* resizes images */
+    .smaller-image{
+        width: 400px;
+        border-radius: 20px;
+    }
+
     .menu-style a:hover{
         background-color: white;
         color: black;
@@ -46,7 +52,7 @@
         border-radius: 20px;
         background: #c78f27;
         padding: 5px;
-        width: 200px;
+        width: 325px;
         height: 25px;
         font-size: 20px;
         text-align: center;
@@ -64,10 +70,14 @@
     </div>
 
     <body>
-    <h1>Put yourself out there, or prowl for looooove?</h1>
-    <h2><a href="/createProf">Create a profile.</a></h2>
-    <h2><a href="/catSearch">Use your profile to find a match.</a></h2>
-    <a href = "/">Get me outta heeeea</a>
+    <center>
+        <h2 class="center-tag" style="font-family: Broadway; color: oldlace; font-size: 40px">Put yourself out there, or prowl for looooove?</h2>
+        <img class="smaller-image" src="kitten.jpeg.jpg" style="display: block; margin-left: auto; margin-right: auto; position: relative; bottom: 5px">
+        <h2 class="rcorners" style="position: center"><a href="/createProf" style="color: white">Create a profile</a></h2>
+        <h2 class="rcorners" style="position: center"><a href="/catSearch" style="color: white">Use your profile to find a match</a></h2>
+        <a href = "/">Get me outta heeeea</a>
+    </center>
+
     </body>
 </main>
 </html>
