@@ -15,6 +15,16 @@ def home():
 def about():
     return render_template('About_Page.html')
 
+# Discussion
+@app.route('/Discussion')
+def about():
+    return render_template('Discussion.html')
+
+# FAQ
+@app.route('/FAQ')
+def about():
+    return render_template('FAQ.html')
+
 # Match_Maker gives them the option to create a profile or search
 @app.route('/Match_Maker')
 def match_maker():
