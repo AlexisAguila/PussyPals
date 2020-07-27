@@ -57,14 +57,14 @@
 <main>
     <div class="menu-color menu-style">
         <a class="menu-style" href="/">Home</a>
-        <a class="menu-style">Discussion</a>
+        <a class="menu-style" href="/">Discussion</a>
         <a class="menu-style" href="/Match_Maker" >Match Maker</a>
-        <a class="menu-style">FAQ</a>
-        <a class="menu-style">About Us</a>
+        <a class="menu-style" href="/">FAQ</a>
+        <a class="menu-style" href="/About_Page">About Us</a>
     </div>
     <body>
+        <h2 class="center-tag" style="font-family: Broadway; color: oldlace; font-size: 40px">Fill out this questionaire to find your meow a matey!</h2>
         <form action="{{ url_for('addprof') }}" method="POST" style="color: white">
-            <h2 class="center-tag" style="font-family: Broadway; color: oldlace; font-size: 40px">Fill out this questionaire to find your meow a matey!</h2>
             <h2 style="color: white">First the personal stuff</h2>
             Whatcha name?
             <input type="text" name="Name">
@@ -106,7 +106,6 @@
             <input type="submit" value="submit">
             <br>
         </form>
-        <a href = "/Match_Maker">Go prowl for love ;)</a>
     </body>
 </main>
 </html>
