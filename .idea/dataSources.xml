@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="catDaddy" uuid="1b2f6d59-74db-445b-bba7-9c378264486d">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\cman9\OneDrive\Documents\GitHub\PussyPals\catDaddy.db</jdbc-url>
+    </data-source>
+  </component>
+</project>

@@ -67,7 +67,10 @@ def addprof():
             msg = "Error in insert operation"
         finally:
             con.close()
-            return render_template("Match_Maker.html")
+            if (msg == "Record successfully added"):
+                return render_template("Match_Maker.html")
+            else:
+                return render_template("createProf.html")
 
 
 # What happens after some prowls on Match_Maker.html
