@@ -17,12 +17,12 @@ def about():
 
 # Discussion
 @app.route('/Discussion')
-def about():
+def discussion():
     return render_template('Discussion.html')
 
 # FAQ
 @app.route('/FAQ')
-def about():
+def faq():
     return render_template('FAQ.html')
 
 # Match_Maker gives them the option to create a profile or search
