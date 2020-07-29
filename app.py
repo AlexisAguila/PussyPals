@@ -3,12 +3,13 @@ from flask import Flask, render_template, request
 import sqlite3 as sql
 import datetime
 import numpy as np
-
 from Users_DB_setup import Users
+from Discussion_DB_setup import Message_Posts
 
 app = Flask(__name__, template_folder='./')
-
+user_messages=Message_Posts()
 user = Users()  # creates user object from class Users
+
 
 
 # Home page
