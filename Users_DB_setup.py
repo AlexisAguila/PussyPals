@@ -20,16 +20,6 @@ class Users():
         connection.commit()
         cursor.close()
 
-    # I THINK WE CAN DELETE THIS FUNCTION, ALEXIS WHEN U READ THIS U DECIDE *********************************************************************************
-    def retrieve_user(self,Username):
-        connection=sqlite3.connect('Users.db')
-        cursor=connection.cursor()
-        Get_user="""SELECT * FROM USERS WHERE Username = ?;"""
-        cursor.execute(Get_user,(Username,))
-        rows=cursor.fetchone()
-        cursor.close()
-        return rows
-        #TODO return render_template(htmlfile, rows=rows)
 
 
     def get_user_name(self, *args):
