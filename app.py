@@ -76,8 +76,6 @@ def addprof():
             cn = request.form['Catnip']
             ou = request.form['Outside']
 
-
-
             with sql.connect("catDaddy.db") as con:
                 cur = con.cursor()
 
@@ -106,10 +104,8 @@ def addprof():
                 elif (checkForMissing(ou) == True):
                     return create_prof()
 
-                cur.execute("INSERT INTO Profiles (Name, Pin, Sleep, Purr, WetFood, DryFood, Butt, Face, Body, Humans, Catnip, Outside) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", (nm,pn,sl,pr,wf,df,bt,fa,bo,hu,cn,ou))
                 # cur.execute("INSERT INTO Profiles (Name, Pin, Sleep, Purr, WetFood, DryFood, Butt, Face, Body, Humans, Catnip, Outside) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", (nm,pn,sl,pr,wf,df,bt,fa,bo,hu,cn,ou))
                 user.insert_user(nm, pn, sl, pr, wf, df, bt, fa, bo, hu, cn, ou)
-
                 con.commit()
                 msg = "Record successfully added"
         except:
