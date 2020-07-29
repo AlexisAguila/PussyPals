@@ -40,14 +40,18 @@ class Users():
 
         return cat[0][0]
 
+
     def match_maker(self, *args):
         # going to implement a way to show percentage of match with all the other users in the database, try to add a way give the 'best match'
         # maybe try to just create a way to give the 'best match' first
         connection = sqlite3.connect('catDaddy.db')
         cursor = connection.cursor()
         # To_Match = cursor.execute("select * from Profiles where Name=? AND Pin=?", (args[0], args[1])) # arg[0] = name, arg[1] = pin of selected cat to match-make
+        cursor.execute("select * from Profiles where Name!=?", (args[0],))
         cat = np.array(cursor.fetchall())
-        # cursor.execute("select NAME from Profiles where Name!=? AND (select)", (cat[0][0],))  # cat[0][0] is name of cat
+
+        print(cat)
+        return cat[0][0]  # currently just fetches most recent name that matches the execute statement above
 
         # p = cursor.execute("select *, ((case when Sleep IS ? THEN 1 WHEN Sleep IS NULL THEN 0 Else NULL END "
         #                "+ CASE WHEN Purr is ? THEN 1 WHEN Purr IS NULL THEN 0 ELSE NULL END"
@@ -57,9 +61,43 @@ class Users():
         #                "ORDER BY Matches DESC "
         #                "LIMIT 1", (To_Match,))
 
-        cursor.execute("SELECT Name FROM Profiles WHERE Sleep=(Select Sleep From Profiles where Name=? AND Pin=?)", (args[0], args[1]))
-        cat = np.array(cursor.fetchall())
+        # cursor.execute("SELECT Name FROM Profiles WHERE "
+        #                "Sleep=(Select Sleep From Profiles where Name=? AND Pin=?)"
+        #                "OR "
+        #                "Purr=(Select Purr From Profiles where Name=? AND Pin=?)"
+        #                "OR "
+        #                "WetFood=(Select WetFood From Profiles where Name=? AND Pin=?)"
+        #                "OR "
+        #                "DryFood=(Select DryFood From Profiles where Name=? AND Pin=?)"
+        #                "OR "
+        #                "Butt=(Select Butt From Profiles where Name=? AND Pin=?)"
+        #                "OR "
+        #                "Face=(Select Face From Profiles where Name=? AND Pin=?)"
+        #                "OR "
+        #                "Body=(Select Body From Profiles where Name=? AND Pin=?)"
+        #                "OR "
+        #                "Humans=(Select Humans From Profiles where Name=? AND Pin=?)"
+        #                "OR "
+        #                "Catnip=(Select Catnip From Profiles where Name=? AND Pin=?)"
+        #                "OR "
+        #                "Outside=(Select Outside From Profiles where Name=? AND Pin=?)"
+        #                , (args[0], args[1], args[0], args[1], args[0], args[1], args[0], args[1], args[0], args[1],
+        #                 args[0], args[1], args[0], args[1], args[0], args[1], args[0], args[1], args[0], args[1]))
 
-        return cat[1][0]
+        # cursor.execute("SELECT Name FROM ("
+        #                "SELECT *, CASE Sleep WHEN ? THEN 1 WHEN NULL THEN 0 ELSE NULL END "
+        #                "+ CASE Purr WHEN ? THEN 1 WHEN NULL THEN 0 ELSE NULL END"
+        #                "+ CASE WetFood WHEN ? THEN 1 WHEN NULL THEN 0 ELSE NULL END AS Matches "
+        #                "FROM Profiles WHERE Matches IS NOT NULL"
+        #                ") Group BY Sleep, Purr, Wetfood ORDER BY Matches DESC", (2, 1, 1))
+
+        # cat = np.array(cursor.fetchall()) # need this to only fetch what i want, not fetchall
+        # what the above statement recieves is the top of the array in which the select statement is true
+        # am thinking about sorting these values in descending order, with the top being the best match
+        # right not just goes in order from the top of the table to bottom
+
+
+
+
 
 
