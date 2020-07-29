@@ -20,14 +20,11 @@ class Users():
         connection.commit()
         cursor.close()
 
-
-
     def get_user_name(self, *args):
         connection = sqlite3.connect('catDaddy.db')
         cursor = connection.cursor()
         cursor.execute("select * from Profiles where Name=? AND Pin=?", (args[0], args[1]))
         cat = np.array(cursor.fetchall())
-
         return cat[0][0]
 
 
