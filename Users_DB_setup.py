@@ -55,7 +55,6 @@ class Users():
         tempHighest = 0
         count = 0
         for x in match_values:
-            print("Values of x are: ", x)
             if x > tempHighest:
                 tempHighest = x
                 magicIndex = count
