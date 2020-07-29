@@ -1,4 +1,6 @@
 import sqlite3
+import numpy as np
+
 
 class Users():
 
@@ -28,3 +30,16 @@ class Users():
         cursor.close()
         return rows
         #TODO return render_template(htmlfile, rows=rows)
+
+
+    def match_making(self, *args):
+        # going to implement a way to show percentage of match with all the other users in the database, try to add a way give the 'best match'
+        # maybe try to just create a way to give the 'best match' first
+        connection = sqlite3.connect('catDaddy.db')
+        cursor = connection.cursor()
+        cursor.execute("select * from Profiles where Name=? AND Pin=?", (args[0], args[1]))
+        cat = np.array(cursor.fetchall())
+        cursor.execute("select * from Profiles where Name!=?", (cat[0][0],))
+        rows = cursor.fetchall()
+
+        return rows, cat[0][0]

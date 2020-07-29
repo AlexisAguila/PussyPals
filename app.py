@@ -52,18 +52,13 @@ def create_prof():
 def cat_search():
     return render_template('catSearch.html')
 
-def checkForMissing(*args):
-    temp = False
+def checkForMissing(temp):
+    if (len(temp) == 0):
+        return True
+    else:
+        return False
 
-    for i in args:
-        if temp != True:
-            if (len(i) == 0):
-                temp = True
-
-    return temp
-
-
-# What happens after someone clicks  submit on createProf.html
+# What happens after someone clicks  sumbit on createProf.html
 @app.route('/addprof', methods=['POST', 'GET'])
 def addprof():
     if request.method == 'POST':
@@ -81,22 +76,41 @@ def addprof():
             cn = request.form['Catnip']
             ou = request.form['Outside']
 
-
-
             with sql.connect("catDaddy.db") as con:
                 cur = con.cursor()
 
-                cur.execute("INSERT INTO Profiles (Name, Pin, Sleep, Purr, WetFood, DryFood, Butt, Face, Body, Humans, Catnip, Outside) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", (nm,pn,sl,pr,wf,df,bt,fa,bo,hu,cn,ou))
+                if (checkForMissing(nm) == True):
+                    return create_prof()
+                elif (checkForMissing(pn) == True):
+                    return create_prof()
+                elif (checkForMissing(sl) == True):
+                    return create_prof()
+                elif (checkForMissing(pr) == True):
+                    return create_prof()
+                elif (checkForMissing(wf) == True):
+                    return create_prof()
+                elif (checkForMissing(df) == True):
+                    return create_prof()
+                elif (checkForMissing(bt) == True):
+                    return create_prof()
+                elif (checkForMissing(fa) == True):
+                    return create_prof()
+                elif (checkForMissing(bo) == True):
+                    return create_prof()
+                elif (checkForMissing(hu) == True):
+                    return create_prof()
+                elif (checkForMissing(cn) == True):
+                    return create_prof()
+                elif (checkForMissing(ou) == True):
+                    return create_prof()
+                # can delete this, leaving it just in case its needed again
                 # cur.execute("INSERT INTO Profiles (Name, Pin, Sleep, Purr, WetFood, DryFood, Butt, Face, Body, Humans, Catnip, Outside) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", (nm,pn,sl,pr,wf,df,bt,fa,bo,hu,cn,ou))
                 user.insert_user(nm, pn, sl, pr, wf, df, bt, fa, bo, hu, cn, ou)
-
                 con.commit()
                 msg = "Record successfully added"
         except:
             con.rollback()
             msg = "Error in insert operation"
-            if (checkForMissing(nm, pn, sl, pr, wf, df, bt, fa, bo, hu, cn, ou) == True):
-                return render_template("createProf.html")
         finally:
             con.close()
             if (msg == "Record successfully added"):
@@ -111,22 +125,22 @@ def showProfiles():
     nm = request.form['Name']
     pn = request.form['Pin']
 
+    rows, Cat = user.match_making(nm, pn)
+
     con = sql.connect("catDaddy.db")
     con.row_factory = sql.Row
-
     cur = con.cursor()
     #    cur.execute("select * from Reviews where Restaurant=?", (rs,))
     cur.execute("select * from Profiles where Name=? AND Pin=?", (nm, pn))
-
     cat = np.array(cur.fetchall())
-    if (len(cat) == 0):
-        return render_template("Match_Maker.html")
-
+    # if (len(cat) == 0):
+    #     return render_template("Match_Maker.html")
     cur.execute("select * from Profiles where Name!=?", (cat[0][0],))
     rows = cur.fetchall()
 
+
     #    return render_template("showReviews.html", rows=rows, msg=rs)
-    return render_template("showProfiles.html", rows=rows, msg=cat[0][0])
+    return render_template("showProfiles.html", rows=rows, msg=Cat)
 
 
 # int main()
