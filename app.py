@@ -126,8 +126,6 @@ def showProfiles():
     nm = request.form['Name']
     pn = request.form['Pin']
 
-    Cat = user.get_user_name(nm, pn)  # Cat gets the name using the function in class
-
     con = sql.connect("catDaddy.db")
     con.row_factory = sql.Row
     cur = con.cursor()
@@ -135,6 +133,8 @@ def showProfiles():
     cat = np.array(cur.fetchall())
     if (len(cat) == 0):
         return render_template("Match_Maker.html")
+    Cat = user.get_user_name(nm, pn)  # Cat gets the name using the function in class
+
     cur.execute("select * from Profiles where Name!=?", (cat[0][0],))
     rows = cur.fetchall()  # tried passing 'rows' from function in class also, however never populated graph with data, so just doing it here instead
     match = user.match_maker(nm, pn)
