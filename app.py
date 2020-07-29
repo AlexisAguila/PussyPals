@@ -80,6 +80,7 @@ def addprof():
 
             with sql.connect("catDaddy.db") as con:
                 cur = con.cursor()
+
                 if (checkForMissing(nm) == True):
                     return create_prof()
                 elif (checkForMissing(pn) == True):
@@ -108,6 +109,7 @@ def addprof():
                 cur.execute("INSERT INTO Profiles (Name, Pin, Sleep, Purr, WetFood, DryFood, Butt, Face, Body, Humans, Catnip, Outside) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", (nm,pn,sl,pr,wf,df,bt,fa,bo,hu,cn,ou))
                 # cur.execute("INSERT INTO Profiles (Name, Pin, Sleep, Purr, WetFood, DryFood, Butt, Face, Body, Humans, Catnip, Outside) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", (nm,pn,sl,pr,wf,df,bt,fa,bo,hu,cn,ou))
                 user.insert_user(nm, pn, sl, pr, wf, df, bt, fa, bo, hu, cn, ou)
+
                 con.commit()
                 msg = "Record successfully added"
         except:
