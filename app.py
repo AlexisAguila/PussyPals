@@ -40,6 +40,12 @@ def create_prof():
 def cat_search():
     return render_template('catSearch.html')
 
+def checkForMissing(temp):
+    if (len(temp) == 0):
+        return True
+    else:
+        return False
+
 # What happens after someone clicks  sumbit on createProf.html
 @app.route('/addprof', methods = ['POST', 'GET'])
 def addprof():
@@ -57,8 +63,36 @@ def addprof():
             hu = request.form['Humans']
             cn = request.form['Catnip']
             ou = request.form['Outside']
+
+
+
             with sql.connect("catDaddy.db") as con:
                 cur = con.cursor()
+                if (checkForMissing(nm) == True):
+                    return create_prof()
+                elif (checkForMissing(pn) == True):
+                    return create_prof()
+                elif (checkForMissing(sl) == True):
+                    return create_prof()
+                elif (checkForMissing(pr) == True):
+                    return create_prof()
+                elif (checkForMissing(wf) == True):
+                    return create_prof()
+                elif (checkForMissing(df) == True):
+                    return create_prof()
+                elif (checkForMissing(bt) == True):
+                    return create_prof()
+                elif (checkForMissing(fa) == True):
+                    return create_prof()
+                elif (checkForMissing(bo) == True):
+                    return create_prof()
+                elif (checkForMissing(hu) == True):
+                    return create_prof()
+                elif (checkForMissing(cn) == True):
+                    return create_prof()
+                elif (checkForMissing(ou) == True):
+                    return create_prof()
+
                 cur.execute("INSERT INTO Profiles (Name, Pin, Sleep, Purr, WetFood, DryFood, Butt, Face, Body, Humans, Catnip, Outside) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", (nm,pn,sl,pr,wf,df,bt,fa,bo,hu,cn,ou))
                 con.commit()
                 msg = "Record successfully added"
