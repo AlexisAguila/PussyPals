@@ -52,13 +52,18 @@ def create_prof():
 def cat_search():
     return render_template('catSearch.html')
 
-def checkForMissing(temp):
-    if (len(temp) == 0):
-        return True
-    else:
-        return False
+def checkForMissing(*args):
+    temp = False
 
-# What happens after someone clicks  sumbit on createProf.html
+    for i in args:
+        if temp != True:
+            if (len(i) == 0):
+                temp = True
+
+    return temp
+
+
+# What happens after someone clicks  submit on createProf.html
 @app.route('/addprof', methods=['POST', 'GET'])
 def addprof():
     if request.method == 'POST':
@@ -81,31 +86,6 @@ def addprof():
             with sql.connect("catDaddy.db") as con:
                 cur = con.cursor()
 
-                if (checkForMissing(nm) == True):
-                    return create_prof()
-                elif (checkForMissing(pn) == True):
-                    return create_prof()
-                elif (checkForMissing(sl) == True):
-                    return create_prof()
-                elif (checkForMissing(pr) == True):
-                    return create_prof()
-                elif (checkForMissing(wf) == True):
-                    return create_prof()
-                elif (checkForMissing(df) == True):
-                    return create_prof()
-                elif (checkForMissing(bt) == True):
-                    return create_prof()
-                elif (checkForMissing(fa) == True):
-                    return create_prof()
-                elif (checkForMissing(bo) == True):
-                    return create_prof()
-                elif (checkForMissing(hu) == True):
-                    return create_prof()
-                elif (checkForMissing(cn) == True):
-                    return create_prof()
-                elif (checkForMissing(ou) == True):
-                    return create_prof()
-
                 cur.execute("INSERT INTO Profiles (Name, Pin, Sleep, Purr, WetFood, DryFood, Butt, Face, Body, Humans, Catnip, Outside) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", (nm,pn,sl,pr,wf,df,bt,fa,bo,hu,cn,ou))
                 # cur.execute("INSERT INTO Profiles (Name, Pin, Sleep, Purr, WetFood, DryFood, Butt, Face, Body, Humans, Catnip, Outside) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", (nm,pn,sl,pr,wf,df,bt,fa,bo,hu,cn,ou))
                 user.insert_user(nm, pn, sl, pr, wf, df, bt, fa, bo, hu, cn, ou)
@@ -115,6 +95,8 @@ def addprof():
         except:
             con.rollback()
             msg = "Error in insert operation"
+            if (checkForMissing(nm, pn, sl, pr, wf, df, bt, fa, bo, hu, cn, ou) == True):
+                return render_template("createProf.html")
         finally:
             con.close()
             if (msg == "Record successfully added"):
