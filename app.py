@@ -25,9 +25,15 @@ def about():
 
 
 # Discussion
-@app.route('/Discussion')
+@app.route('/Discussion', methods=['POST', 'GET'])
 def discussion():
-    return render_template('Discussion.html')
+    #user_messages.insert_message("Hello","World1")  #TODO add a text box
+    con = sql.connect("discussion_messages.db")
+    con.row_factory = sql.Row
+    cur = con.cursor()
+    cur.execute("select * from Messages")
+    rows=cur.fetchall()
+    return render_template('Discussion.html',rows=rows)
 
 
 # FAQ
