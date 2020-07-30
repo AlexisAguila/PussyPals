@@ -11,7 +11,6 @@ user_messages=Message_Posts()
 user = Users()  # creates user object from class Users
 
 
-
 # Home page
 @app.route('/')
 def home():
@@ -25,9 +24,25 @@ def about():
 
 
 # Discussion
-@app.route('/Discussion')
+@app.route('/Discussion', methods=['POST', 'GET'])
 def discussion():
-    return render_template('Discussion.html')
+    #user_messages.insert_message("Hello","World1")  #TODO add a text box
+    con = sql.connect("discussion_messages.db")
+
+    con.row_factory = sql.Row
+    cur = con.cursor()
+    cur.execute("select * from Messages")
+    rows=cur.fetchall()
+
+    if request.method == 'POST':
+        nm = request.form['Name']
+        msg = request.form['Message']
+
+        user_messages.insert_message(nm,msg)  #TODO add a text box
+
+
+
+    return render_template('Discussion.html',rows=rows)
 
 
 # FAQ
@@ -126,22 +141,20 @@ def showProfiles():
     nm = request.form['Name']
     pn = request.form['Pin']
 
-    rows, Cat = user.match_making(nm, pn)
-
     con = sql.connect("catDaddy.db")
     con.row_factory = sql.Row
     cur = con.cursor()
-    #    cur.execute("select * from Reviews where Restaurant=?", (rs,))
     cur.execute("select * from Profiles where Name=? AND Pin=?", (nm, pn))
     cat = np.array(cur.fetchall())
-    # if (len(cat) == 0):
-    #     return render_template("Match_Maker.html")
+    if (len(cat) == 0):
+        return render_template("Match_Maker.html")
+    Cat = user.get_user_name(nm, pn)  # Cat gets the name using the function in class
+
     cur.execute("select * from Profiles where Name!=?", (cat[0][0],))
-    rows = cur.fetchall()
+    rows = cur.fetchall()  # tried passing 'rows' from function in class also, however never populated graph with data, so just doing it here instead
+    match = user.match_maker(nm, pn)
 
-
-    #    return render_template("showReviews.html", rows=rows, msg=rs)
-    return render_template("showProfiles.html", rows=rows, msg=Cat)
+    return render_template("showProfiles.html", rows=rows, msg=Cat, m=match)
 
 
 # int main()

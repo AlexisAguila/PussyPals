@@ -8,7 +8,6 @@ class Message_Posts():
         #Connection.execute('CREATE TABLE Messages (Name VARCHAR(12) , Message TEXT)')
         Connection.close()
 
-
     def insert_message(self, Name, message):
         connection = sqlite3.connect('discussion_messages.db')
         cursor = connection.cursor()

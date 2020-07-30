@@ -61,8 +61,19 @@
       <a class="menu-style" href="/FAQ">FAQ</a>
       <a class="menu-style" href="/About_Page">About Us</a>
    </div>
+   <img style="float: right; width: 20%; border-radius: 20px" src="https://theemptypage.files.wordpress.com/2013/04/kitten-at-computer.jpg">
    <body style="color: white">
       <h2 class="center-tag" style="font-family: Broadway; color: oldlace; font-size: 40px">Matches for {{msg}}</h2>
+      <h3 class="center-tag" style="font-family: Broadway; color: oldlace; font-size: 20px">Best match for {{msg}} is: {{m}}</h3>
+
+      <style>
+         table, th, td {
+            border: 1px solid orange;
+            padding: 5px;
+            background-color: grey;
+         }
+      </style>
+
       <table border = 1 style="color: white">
          <thead>
             <td>Name</td>
@@ -94,7 +105,6 @@
             </tr>
          {% endfor %}
       </table>
-
    </body>
 </main>
 </html>
