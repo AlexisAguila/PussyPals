@@ -8,7 +8,10 @@ Pussypals .com is a cat dating website. Cats will be able to create their own pr
     -Worked on html pages for homescreen and those connected to the top navigation bar
   
 -Anthony Micciche
-    - Worked on app.py
-    - Worked on the skeleton for the html pages related to Matchmaking
-    - Worked on setupCatDaddy.py
+    -Worked on app.py, and connecting the HTML pages together, through this controller
+    -Worked on the skeleton for the html pages related to Matchmaking and their relation to the controller
+    -Worked on setting up the profile database
+    -Worked on the discussion board in app.py and its HTML page
+    -Contributed to the FAQ, and wrote the Matchmaking questions.
+    
 
