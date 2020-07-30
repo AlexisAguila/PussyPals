@@ -7,7 +7,7 @@ class Users():
     def __init__(self):
         Connection = sqlite3.connect('catDaddy.db')
         Connection = Connection.cursor()
-        #Connection.execute('CREATE TABLE Profiles (Name VARCHAR(12) UNIQUE, Pin INT, Sleep FLOAT, Purr FLOAT,WetFood FLOAT, DryFood FLOAT, Butt FLOAT, Face FLOAT, Body FLOAT, Humans FLOAT, Catnip FLOAT, Outside FLOAT)')
+        # Connection.execute('CREATE TABLE Profiles (Name VARCHAR(12) UNIQUE, Pin INT, Sleep FLOAT, Purr FLOAT,WetFood FLOAT, DryFood FLOAT, Butt FLOAT, Face FLOAT, Body FLOAT, Humans FLOAT, Catnip FLOAT, Outside FLOAT)')
         Connection.close()
 
 
@@ -20,44 +20,26 @@ class Users():
         connection.commit()
         cursor.close()
 
-    def get_user_name(self, *args):
+
+    def retrieve_user(self,Username):
+        connection=sqlite3.connect('Users.db')
+        cursor=connection.cursor()
+        Get_user="""SELECT * FROM USERS WHERE Username = ?;"""
+        cursor.execute(Get_user,(Username,))
+        rows=cursor.fetchone()
+        cursor.close()
+        return rows
+        #TODO return render_template(htmlfile, rows=rows)
+
+
+    def match_making(self, *args):
+        # going to implement a way to show percentage of match with all the other users in the database, try to add a way give the 'best match'
+        # maybe try to just create a way to give the 'best match' first
         connection = sqlite3.connect('catDaddy.db')
         cursor = connection.cursor()
         cursor.execute("select * from Profiles where Name=? AND Pin=?", (args[0], args[1]))
         cat = np.array(cursor.fetchall())
-        return cat[0][0]
+        cursor.execute("select * from Profiles where Name!=?", (cat[0][0],))
+        rows = cursor.fetchall()
 
-
-
-    def match_maker(self, *args):
-
-        connection = sqlite3.connect('catDaddy.db')
-        cursor = connection.cursor()
-        # To_Match = cursor.execute("select * from Profiles where Name=? AND Pin=?", (args[0], args[1])) # arg[0] = name, arg[1] = pin of selected cat to match-make
-        cursor.execute("select * from Profiles where Name=?", (args[0],)) # returns an array of all users except the one being match-made
-        name = np.array(cursor.fetchall())
-
-        cursor.execute("select * from Profiles where Name!=?", (args[0],)) # returns an array of all users except the one being match-made
-        cat = np.array(cursor.fetchall())
-
-        matche_names = []
-        match_values = []
-
-        for i in range(0,len(cat)):
-            matche_names.append(cat[i][0])
-            match_values.append(0)
-            for c in range (2,11):
-
-                if name[0][c] == cat[i][c]:
-                    match_values[i] = match_values[i] + 1
-
-        magicIndex = 0
-        tempHighest = 0
-        count = 0
-        for x in match_values:
-            if x > tempHighest:
-                tempHighest = x
-                magicIndex = count
-            count += 1
-
-        return matche_names[magicIndex]  # Returns the user with the most attributes that match eachother, else if there is no match, returns the user at the top of the table
+        return rows, cat[0][0]

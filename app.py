@@ -95,35 +95,39 @@ def addprof():
             with sql.connect("catDaddy.db") as con:
                 cur = con.cursor()
 
+                msg = ""
+
                 if (checkForMissing(nm) == True):
-                    return create_prof()
+                    msg = "Error in insert operation"
                 elif (checkForMissing(pn) == True):
-                    return create_prof()
+                    msg = "Error in insert operation"
                 elif (checkForMissing(sl) == True):
-                    return create_prof()
+                    msg = "Error in insert operation"
                 elif (checkForMissing(pr) == True):
-                    return create_prof()
+                    msg = "Error in insert operation"
                 elif (checkForMissing(wf) == True):
-                    return create_prof()
+                    msg = "Error in insert operation"
                 elif (checkForMissing(df) == True):
-                    return create_prof()
+                    msg = "Error in insert operation"
                 elif (checkForMissing(bt) == True):
-                    return create_prof()
+                    msg = "Error in insert operation"
                 elif (checkForMissing(fa) == True):
-                    return create_prof()
+                    msg = "Error in insert operation"
                 elif (checkForMissing(bo) == True):
-                    return create_prof()
+                    msg = "Error in insert operation"
                 elif (checkForMissing(hu) == True):
-                    return create_prof()
+                    msg = "Error in insert operation"
                 elif (checkForMissing(cn) == True):
-                    return create_prof()
+                    msg = "Error in insert operation"
                 elif (checkForMissing(ou) == True):
-                    return create_prof()
+                    msg = "Error in insert operation"
+                else:
+                    msg = "Record successfully added"
                 # can delete this, leaving it just in case its needed again
                 # cur.execute("INSERT INTO Profiles (Name, Pin, Sleep, Purr, WetFood, DryFood, Butt, Face, Body, Humans, Catnip, Outside) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", (nm,pn,sl,pr,wf,df,bt,fa,bo,hu,cn,ou))
                 user.insert_user(nm, pn, sl, pr, wf, df, bt, fa, bo, hu, cn, ou)
                 con.commit()
-                msg = "Record successfully added"
+                # msg = "Record successfully added"
         except:
             con.rollback()
             msg = "Error in insert operation"
