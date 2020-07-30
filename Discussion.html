@@ -79,7 +79,14 @@
             </tr>
          {% endfor %}
       </table>
-
+        <form action="{{ url_for('addprof') }}" method="POST" style="color: white">
+            <br>
+            <br>
+            Enter Name
+            <input type="text" name="Name">
+            <br>
+            <input type="submit" value="submit">
+        </form>
    </body>
 </main>
 </html>

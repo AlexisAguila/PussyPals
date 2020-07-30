@@ -11,7 +11,6 @@ user_messages=Message_Posts()
 user = Users()  # creates user object from class Users
 
 
-
 # Home page
 @app.route('/')
 def home():
