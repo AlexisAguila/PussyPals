@@ -28,10 +28,20 @@ def about():
 def discussion():
     #user_messages.insert_message("Hello","World1")  #TODO add a text box
     con = sql.connect("discussion_messages.db")
+
     con.row_factory = sql.Row
     cur = con.cursor()
     cur.execute("select * from Messages")
     rows=cur.fetchall()
+
+    if request.method == 'POST':
+        nm = request.form['Name']
+        msg = request.form['Message']
+
+        user_messages.insert_message(nm,msg)  #TODO add a text box
+
+
+
     return render_template('Discussion.html',rows=rows)
 
 
